@@ -17,6 +17,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
+      flash[:notice] = "New Game Created!"
       render :show
     else
       render :new
