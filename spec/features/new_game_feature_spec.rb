@@ -2,15 +2,15 @@ require "spec_helper"
 
 feature "new game" do
   background do
+    @players = create_list(:player, 2)
     visit "/games/new"
   end
 
   scenario "creating valid game" do
-    # should redirect to game page on first round
     within("#new_game") do
       fill_in "Number of rounds", with: 10
-      select "Damien", from: "Players"
-      select "Ste", from: "Players"
+      select @players[0].first_name, from: "Players"
+      select @players[1].first_name, from: "Players"
       click_button "Create Game"
     end
 

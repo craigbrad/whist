@@ -36,6 +36,11 @@ end
 Capybara.run_server = true
 Capybara.server_port = 8200
 
+# factory_girl
+FactoryGirl.definition_file_paths = %w{./factories ./test/factories ./spec/factories}
+FactoryGirl.find_definitions
+FactoryGirl.reload
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -59,6 +64,9 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     # mocks.verify_partial_doubles = true
   end
+
+  # factories
+  config.include FactoryGirl::Syntax::Methods
 
   # database cleaner
 
@@ -134,3 +142,16 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+# Forces all threads to share the same connection. This works on
+# Capybara because it starts the web server in a thread.
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
