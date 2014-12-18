@@ -18,7 +18,9 @@ feature "new game" do
   end
 
   scenario "attempting to create an invalid game" do
-    # should show errors on form
+    click_button "Create Game"
+
+    expect(page).to have_css(".error")
   end
 
   scenario "adding players to game" do
