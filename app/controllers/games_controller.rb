@@ -1,4 +1,4 @@
-class GamesController
+class GamesController < ApplicationController
   def show
     # if existing game
     # show existing game (first round)
