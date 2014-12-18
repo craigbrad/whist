@@ -30,7 +30,12 @@ gem 'spring', group: :development
 gem "poltergeist"
 
 group :test do
+  # see: http://stackoverflow.com/questions/16866520/rails-4-rspec-warning-you-should-require-minitest-autorun-instead
+  gem "minitest"
+
   gem "rspec"
+  gem "rspec-rails"
   gem "factory_girl"
   gem "capybara"
+  gem "database_cleaner"
 end
