@@ -24,9 +24,9 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    {
+    params.require(:game).permit(
       :number_of_rounds,
       :players => []
-    }
+    )
   end
 end
