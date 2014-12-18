@@ -1,9 +1,12 @@
 class GamesController < ApplicationController
+  before_action :set_game, only: :show
+
   def show
     # if existing game
     # show existing game (first round)
     # else
     # show overview
+
   end
 
   def new
@@ -14,10 +17,9 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      # go to first round
-      # redirect_to :show
+      render :show
     else
-      # render with errors
+      render :new
     end
   end
 
@@ -26,7 +28,11 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(
       :number_of_rounds,
-      :players => []
+      :player_ids => []
     )
+  end
+
+  def set_game
+    @game = Game.find(params[:id])
   end
 end

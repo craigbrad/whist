@@ -17,6 +17,7 @@ gem 'jquery-rails'
 
 # views
 gem "slim"
+gem "simple_form"
 
 # api
 gem 'jbuilder', '~> 2.0'
