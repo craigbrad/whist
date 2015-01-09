@@ -3,4 +3,11 @@ h1 New Game
 = simple_form_for @game do |f|
   = f.input :number_of_rounds
   = f.association :players
+
+  #player-selector
+    - Player.all.each do |player|
+      = link_to player.full_name, "#", class: "add-player", data: { id: player.id }
+
+  #selected-players
+
   = f.submit

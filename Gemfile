@@ -23,7 +23,10 @@ gem "simple_form"
 gem 'jbuilder', '~> 2.0'
 
 # dev
-gem 'spring', group: :development
+group :development do
+  gem "spring"
+  gem "launchy"
+end
 
 # tests
 

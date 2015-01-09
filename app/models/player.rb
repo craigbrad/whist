@@ -3,6 +3,10 @@ class Player < ActiveRecord::Base
   has_many :rounds, through: :games
 
   def to_s
+    full_name
+  end
+
+  def full_name
     [first_name, last_name].join(" ")
   end
 end
