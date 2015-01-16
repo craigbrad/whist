@@ -1,6 +1,6 @@
 / abuse of tables here is until I integrate grid system
 
-= simple_form_for @game do |f|
+= simple_form_for @game, remote: true, authenticity_token: true do |f|
   table#scoreboard
     thead
       th trump
