@@ -13,7 +13,7 @@ class GamesController < ApplicationController
 
     if @game.save
       flash[:notice] = "New Game Created!"
-      render :edit
+      redirect_to action: :edit, id: @game.id
     else
       render :new
     end
