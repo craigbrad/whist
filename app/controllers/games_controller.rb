@@ -1,12 +1,7 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: :show
+  before_action :set_game, only: [:show, :edit, :update]
 
   def show
-    # if existing game
-    # show existing game (first round)
-    # else
-    # show overview
-
   end
 
   def new
@@ -18,9 +13,21 @@ class GamesController < ApplicationController
 
     if @game.save
       flash[:notice] = "New Game Created!"
-      render :show
+      render :edit
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @game.update(game_params)
+      flash[:notice] = "Updated Game!"
+      render :edit
+    else
+      render :edit
     end
   end
 
@@ -29,7 +36,12 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(
       :number_of_rounds,
-      :player_ids => []
+      :player_ids => [],
+      :rounds_attributes => [
+        :id, :trump,
+        :trump_picker_id,
+        :player_rounds_attributes => [:id, :bid, :contracts]
+      ]
     )
   end
 

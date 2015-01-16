@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218140056) do
+ActiveRecord::Schema.define(version: 20150116162504) do
 
   create_table "games", force: true do |t|
     t.datetime "start_at"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20141218140056) do
 
   add_index "games_players", ["game_id", "player_id"], name: "index_games_players_on_game_id_and_player_id", unique: true
 
+  create_table "player_rounds", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "round_id"
+    t.integer  "bid"
+    t.integer  "contracts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "player_rounds", ["player_id", "round_id"], name: "index_player_rounds_on_player_id_and_round_id", unique: true
+
   create_table "players", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -45,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141218140056) do
     t.string   "trumps"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "trump"
   end
 
   add_index "rounds", ["game_id"], name: "index_rounds_on_game_id"
