@@ -1,3 +1,5 @@
+/ abuse of tables here is until I integrate grid system
+
 = simple_form_for @game do |f|
   table#scoreboard
     thead
@@ -10,12 +12,12 @@
     tbody
       = f.simple_fields_for :rounds do |rounds_form|
         tr
-          td = rounds_form.input :trump, collection: Round::TRUMPS
-          td = rounds_form.association :trump_picker
+          td = rounds_form.input :trump, collection: Round::TRUMPS, label: false
+          td = rounds_form.association :trump_picker, label: false
 
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
             td
-              = player_rounds_form.input :bid, label: "B", class: "small"
-              = player_rounds_form.input :contracts, label: "C"
+              = player_rounds_form.input :bid, label: "B", input_html: { class: "small" }
+              = player_rounds_form.input :contracts, label: "C", input_html: { class: "small" }
 
   = f.button :submit
