@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150116162504) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "games", force: true do |t|
     t.datetime "start_at"
     t.datetime "end_at"
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150116162504) do
     t.integer "player_id"
   end
 
-  add_index "games_players", ["game_id", "player_id"], name: "index_games_players_on_game_id_and_player_id", unique: true
+  add_index "games_players", ["game_id", "player_id"], name: "index_games_players_on_game_id_and_player_id", unique: true, using: :btree
 
   create_table "player_rounds", force: true do |t|
     t.integer  "player_id"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150116162504) do
     t.datetime "updated_at"
   end
 
-  add_index "player_rounds", ["player_id", "round_id"], name: "index_player_rounds_on_player_id_and_round_id", unique: true
+  add_index "player_rounds", ["player_id", "round_id"], name: "index_player_rounds_on_player_id_and_round_id", unique: true, using: :btree
 
   create_table "players", force: true do |t|
     t.string   "first_name"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150116162504) do
     t.string   "trump"
   end
 
-  add_index "rounds", ["game_id"], name: "index_rounds_on_game_id"
-  add_index "rounds", ["trump_picker_id"], name: "index_rounds_on_trump_picker_id"
+  add_index "rounds", ["game_id"], name: "index_rounds_on_game_id", using: :btree
+  add_index "rounds", ["trump_picker_id"], name: "index_rounds_on_trump_picker_id", using: :btree
 
 end

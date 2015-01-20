@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# heroku
+gem "rails_12factor"
+
 # app
 gem 'rails', '4.1.8'
 
@@ -7,7 +10,6 @@ gem 'rails', '4.1.8'
 gem "thin"
 
 # database
-gem 'sqlite3', group: :development
 gem 'pg'
 
 # assets
