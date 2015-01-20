@@ -7,7 +7,7 @@ gem 'rails', '4.1.8'
 gem "thin"
 
 # database
-gem 'sqlite3'
+gem 'pg'
 
 # assets
 gem 'sass-rails', '~> 4.0.3'
