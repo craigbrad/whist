@@ -7,6 +7,7 @@ gem 'rails', '4.1.8'
 gem "thin"
 
 # database
+gem 'sqlite3', group: :development
 gem 'pg'
 
 # assets
