@@ -16,6 +16,10 @@ class Round < ActiveRecord::Base
 
   before_create :fill_player_rounds
 
+  # SCOPES
+
+  default_scope { order("number asc") }
+
   # ATTRIBUTES
 
   accepts_nested_attributes_for :player_rounds
