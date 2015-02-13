@@ -24,6 +24,8 @@ class Game < ActiveRecord::Base
   private
 
   def fill_rounds
-    self.rounds << Array.new(number_of_rounds) { rounds.new }
+    (1..number_of_rounds).each do |round_num|
+      self.rounds.new(number: round_num)
+    end
   end
 end
