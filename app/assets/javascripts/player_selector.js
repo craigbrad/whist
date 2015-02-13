@@ -8,7 +8,7 @@
     $(this).hide();
 
     // todo: use template
-    $("#selected-players").append("<a href='#' class='remove-player' data-id='" + player_id + "'>" + name + "</a>");
+    $("#selected-players .panel-body").append("<a href='#' class='remove-player player-pod' data-id='" + player_id + "'>" + name + "</a>");
     pushToPlayerIds(player_id);
   });
 

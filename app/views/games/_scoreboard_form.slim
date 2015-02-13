@@ -3,8 +3,8 @@
 = simple_form_for @game, remote: true, authenticity_token: true, class: "form-horizontal" do |f|
   table#scoreboard
     thead
-      th trump
-      th by
+      th.col-sm-1 trump
+      th.col-sm-1 by
 
       - @game.players.each do |player|
         th colspan=3 = player

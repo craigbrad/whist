@@ -1,3 +1,4 @@
-ul
-  - flash.each do |type, value|
-    li = value
+- if flash.any?
+  ul.flash.alert.alert-info
+    - flash.each do |type, value|
+      li = value

@@ -1,0 +1,6 @@
+#player-selector, #selected-players {
+  .player-pod {
+    margin: 10px;
+    @extend .col-sm-2;
+  }
+}

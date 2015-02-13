@@ -1,13 +1,19 @@
 h1 New Game
 
 = simple_form_for @game do |f|
-  = f.input :number_of_rounds
-  = f.association :players
+  .row
+    = f.input :number_of_rounds, wrapper_html: { class: "col-sm-2" }
+    = f.association :players, wrapper_html: { class: "hide" }
 
-  #player-selector
-    - Player.all.each do |player|
-      = link_to player.full_name, "#", class: "add-player", data: { id: player.id }
+  #player-selector.panel.panel-default
+    .panel-heading Roster
+    .panel-body
+      - Player.all.each do |player|
+        = link_to player.full_name, "#", class: "add-player player-pod", data: { id: player.id }
 
-  #selected-players
+  #selected-players.panel.panel-default
+    .panel-heading The Chosen
+    .panel-body
 
-  = f.submit
+
+  = f.button :submit
