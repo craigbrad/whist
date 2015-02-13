@@ -1,23 +1,37 @@
 / abuse of tables here is until I integrate grid system
 
-= simple_form_for @game, remote: true, authenticity_token: true do |f|
+= simple_form_for @game, remote: true, authenticity_token: true, class: "form-horizontal" do |f|
   table#scoreboard
     thead
       th trump
       th by
 
       - @game.players.each do |player|
-        th = player
+        th colspan=3 = player
+
+      / todo: if less than 5 players, pad with empty columns
+      / to keep layout consistent
 
     tbody
+      tr
+        td
+        td
+
+        - @game.players.length.times do
+            td Bid
+            td Won
+            td Score
+
       = f.simple_fields_for :rounds do |rounds_form|
         tr
           td = rounds_form.input :trump, collection: Round::TRUMPS, label: false
+
+          / todo: only include players in this game
           td = rounds_form.association :trump_picker, label: false
 
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
-            td
-              = player_rounds_form.input :bid, label: "B", input_html: { class: "small" }
-              = player_rounds_form.input :contracts, label: "C", input_html: { class: "small" }
+            td = player_rounds_form.input :bid, label: false
+            td = player_rounds_form.input :contracts, label: false
+            td *
 
   = f.button :submit
