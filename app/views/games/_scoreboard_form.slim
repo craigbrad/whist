@@ -23,7 +23,7 @@
             td Score
 
       = f.simple_fields_for :rounds do |rounds_form|
-        tr
+        tr.player_rounds
           td = rounds_form.input :trump, collection: Round::TRUMPS, label: false
 
           / todo: only include players in this game
@@ -32,6 +32,6 @@
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
             td = player_rounds_form.input :bid, label: false
             td = player_rounds_form.input :contracts, label: false
-            td *
+            td.score *
 
   = f.button :submit
