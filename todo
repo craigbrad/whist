@@ -1,0 +1,28 @@
+Here's the basic process:
+
+* add players, set rounds, create game
+
+* scoreboard appears
+
+* app tells you to split -- asks for dealer
+
+* app tells you how many cards to deal
+
+* app asks you what trump is and who is trump picker
+
+* app asks for bids from each person
+
+* app then allows you to enter contracts for each person
+
+* app has "next round" button then repeats from above
+
+====
+
+* auto pick trump picker
+* auto enter 0 after contracts entered (based on num available)
+* highlight places (1st, 2nd, etc)
+* sort order for players at top
+* indicate whether split or not (highlight same contracts, winning contract)
+* auto-focus on next bid/contracts input based on player order
+* keep players/rounds (trump/picker/num) fixed so you can scroll on smaller devices
+* add dependent callbacks to models (then clean up db)
