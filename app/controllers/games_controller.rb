@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  http_basic_authenticate_with name: "whist", password: "thisisasecret"
+
   before_action :set_game, only: [:show, :edit, :update]
 
   def show
