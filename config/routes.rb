@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root "pages#home"
 
-  resources :games, except: [:delete]
+  resources :games, except: [:delete] do
+    get :builder, on: :collection
+    post :builder, on: :collection, action: :build_games
+  end
 
   resources :players, only: [:new, :create]
 

@@ -1,0 +1,13 @@
+h4 how many players?
+
+.row
+  = form_tag builder_games_path, method: :post do
+    = text_field_tag 'number_of_players'
+    = submit_tag 'generate random players'
+
+- if @players.present?
+  #player-selector.panel.panel-default
+    .panel-heading Players
+    .panel-body
+      - @players.each do |player|
+        .player-pod = player.full_name

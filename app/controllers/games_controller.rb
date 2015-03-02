@@ -33,6 +33,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def build_games
+    @players = Player.all.sample(builder_params[:number_of_players].to_i)
+    render :builder
+  end
+
   private
 
   def game_params
@@ -45,6 +50,10 @@ class GamesController < ApplicationController
         :player_rounds_attributes => [:id, :bid, :contracts]
       ]
     )
+  end
+
+  def builder_params
+    params.permit(:number_of_players)
   end
 
   def set_game
