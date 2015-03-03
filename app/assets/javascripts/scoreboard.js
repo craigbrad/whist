@@ -32,13 +32,67 @@ var Scoreboard = (function($, _) {
     var score = this.playerRoundScore(playerRound);
 
     this.setScoreOnPlayerRound(playerRound, score);
+
+    if(this.rowOfElementComplete(element)) {
+      this.selectTrumpPicker(element);
+    }
   }
 
-  Scoreboard.prototype.rowOfElement = function(element) {
+  Scoreboard.prototype.rowOfElement = function(element, contractsOnly) {
     var row = element.closest("tr");
-    var elements = row.find(".game_rounds_player_rounds_bid input, .game_rounds_player_rounds_contracts input");
+
+    if(contractsOnly == true) {
+      var elements = row.find(".game_rounds_player_rounds_contracts input");
+    } else {
+      var elements = row.find(".game_rounds_player_rounds_bid input, .game_rounds_player_rounds_contracts input");
+    }
 
     return elements;
+  }
+
+  Scoreboard.prototype.rowOfElementComplete = function(element) {
+    var row = this.rowOfElement(element);
+
+    var values = $.map(row, function(input, index){
+      return input.value;
+    });
+
+    if($.inArray("", values) > -1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Scoreboard.prototype.selectTrumpPicker = function(element) {
+    var playerId = this.playerIdWithMaxScore(element);
+    var playerRoundNum = parseInt($(element).attr("id").match(/game_rounds_attributes_(\d+)/)[1]);
+
+    var select = $("#game_rounds_attributes_" + (playerRoundNum + 1) + "_trump_picker_id");
+
+    select.val(playerId);
+  }
+
+  Scoreboard.prototype.playerIdWithMaxScore = function(element) {
+    var row = this.rowOfElement(element, true);
+
+    var sortedRow = row.sort(function(a, b){
+      if (a.value < b.value) {
+        return -1;
+      }
+
+      if (a.value > b.value) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    var playerId = $(sortedRow[row.length - 1]).data('playerId');
+
+    // todo: if more than one player has top score, SPLIT
+
+    return playerId;
   }
 
   Scoreboard.prototype.playerRound = function(element) {

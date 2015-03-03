@@ -31,7 +31,10 @@
 
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
             td = player_rounds_form.input :bid, label: false
-            td = player_rounds_form.input :contracts, label: false
+
+            td = player_rounds_form.input :contracts, label: false,
+              input_html: { data: { player_id: player_rounds_form.object.player_id } }
+
             td.score *
 
   = f.button :submit
