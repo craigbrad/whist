@@ -1,7 +1,8 @@
 class Game < ActiveRecord::Base
   # RELATIONSHIPS
 
-  has_and_belongs_to_many :players
+  has_many :game_players
+  has_many :players, through: :game_players
   has_many :rounds
   has_many :player_rounds, through: :rounds
 

@@ -10,6 +10,7 @@
     // todo: use template
     $("#selected-players .panel-body").append("<a href='#' class='remove-player player-pod' data-id='" + player_id + "'>" + name + "</a>");
     pushToPlayerIds(player_id);
+    pushToPlayerPositions(player_id);
   });
 
   $("#selected-players").on("click", ".remove-player", function(){
@@ -21,6 +22,7 @@
   });
 
   // todo: merge
+  // todo: add player attributes input field instead (now using player_attributes[id])
   function pushToPlayerIds(id) {
     var player_ids_input = $("#game_player_ids");
     var ids = player_ids_input.val() || [];
@@ -38,6 +40,12 @@
     ids.splice(index, 1);
 
     player_ids_input.val(ids);
+  }
+
+  function pushToPlayerPositions(id) {
+    var form = $("form#new_game");
+
+    // todo: add input and set position
   }
 
 })(jQuery);
