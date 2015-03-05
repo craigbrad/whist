@@ -3,6 +3,10 @@ class GamesController < ApplicationController
 
   before_action :set_game, only: [:show, :edit, :update, :select_players]
 
+  def index
+    @games = Game.order("created_at ASC").all
+  end
+
   def show
   end
 

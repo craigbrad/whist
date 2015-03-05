@@ -18,12 +18,7 @@ Here's the basic process:
 
 ====
 
-***
-could change flow of game creation to simplify player order stuff
-as it stands, we would have to dynamically inject player_attributes[] fields
-but we could instead use ajax to add players, if we create the game first after
-selecting number of rounds
-***
+* add dealer to round
 
 * auto pick trump picker
 * auto enter 0 after contracts entered (based on num available)
