@@ -26,6 +26,7 @@ class GamesController < ApplicationController
 
   def edit
     # todo: add finalise game instead
+
     if params[:generate_rounds].present?
       @game.fill_rounds!
     end
