@@ -3,17 +3,5 @@ h1 New Game
 = simple_form_for @game do |f|
   .row
     = f.input :number_of_rounds, wrapper_html: { class: "col-sm-2" }
-    = f.association :players, wrapper_html: { class: "hide" }
-
-  #player-selector.panel.panel-default
-    .panel-heading Roster
-    .panel-body
-      - Player.all.each do |player|
-        = link_to player.full_name, "#", class: "add-player player-pod", data: { id: player.id }
-
-  #selected-players.panel.panel-default
-    .panel-heading The Chosen
-    .panel-body
-
 
   = f.button :submit

@@ -1,0 +1,15 @@
+h1 Select Players
+
+#player-selector.panel.panel-default
+  .panel-heading Roster
+  .panel-body
+    - @available_players.each do |player|
+      = link_to player.full_name, "#", class: "add-player player-pod", 
+        data: { post_path: game_players_path(game_id: @game.id), player_id: player.id }
+
+#selected-players.panel.panel-default
+  .panel-heading The Chosen
+  .panel-body
+    = render @game.game_players
+
+= link_to "Start Game", edit_game_path(@game, generate_rounds: 1)

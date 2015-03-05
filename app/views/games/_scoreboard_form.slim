@@ -3,11 +3,13 @@
 = simple_form_for @game, remote: true, authenticity_token: true, class: "form-horizontal" do |f|
   table#scoreboard
     thead
+      th round
       th.col-sm-1 trump
       th.col-sm-1 by
 
-      - @game.players.each do |player|
-        th colspan=3 = player
+      - @game.game_players.each do |game_player|
+        th colspan=3
+          = "(#{game_player.position}) #{game_player.player.full_name}" 
 
       / todo: if less than 5 players, pad with empty columns
       / to keep layout consistent
@@ -16,18 +18,24 @@
       tr
         td
         td
+        td
 
         - @game.players.length.times do
             td Bid
             td Won
             td Score
 
+      - round_num = @game.rounds.count + 1
+
       = f.simple_fields_for :rounds do |rounds_form|
+
         tr.player_rounds
+          td 
+            span.btn.btn-success.col-sm-12 = round_num -= 1
+
           td = rounds_form.input :trump, collection: Round::TRUMPS, label: false
 
-          / todo: only include players in this game
-          td = rounds_form.association :trump_picker, label: false
+          td = rounds_form.association :trump_picker, collection: @game.players, label: false
 
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
             td = player_rounds_form.input :bid, label: false

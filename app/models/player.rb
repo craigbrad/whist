@@ -1,9 +1,16 @@
 class Player < ActiveRecord::Base
   # RELATIONSHIPS
 
-  has_and_belongs_to_many :games
+  has_many :game_players
+  has_many :games, through: :game_players
   has_many :rounds, through: :games
   has_many :player_rounds
+
+  # SCOPES
+
+  scope :not_in_game, ->(game) {
+    where.not(id: game.player_ids)
+  }
 
   def to_s
     full_name

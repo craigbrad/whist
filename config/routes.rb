@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :games, except: [:delete] do
     get :builder, on: :collection
     post :builder, on: :collection, action: :build_games
+
+    get :select_players, on: :member
+
+    resources :players, controller: :game_players
   end
 
   resources :players, only: [:new, :create]

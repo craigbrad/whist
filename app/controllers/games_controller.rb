@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   http_basic_authenticate_with name: "whist", password: "thisisasecret"
 
-  before_action :set_game, only: [:show, :edit, :update]
+  before_action :set_game, only: [:show, :edit, :update, :select_players]
 
   def show
   end
@@ -14,14 +14,21 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      flash[:notice] = "New Game Created!"
-      redirect_to action: :edit, id: @game.id
+      redirect_to action: :select_players, id: @game.id
     else
       render :new
     end
   end
 
+  def select_players
+    @available_players = Player.not_in_game(@game)
+  end
+
   def edit
+    # todo: add finalise game instead
+    if params[:generate_rounds].present?
+      @game.fill_rounds!
+    end
   end
 
   def update
@@ -43,9 +50,6 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(
       :number_of_rounds,
-      :players_attributes => [
-        :id, :position
-      ],
       :rounds_attributes => [
         :id, :trump,
         :trump_picker_id,
