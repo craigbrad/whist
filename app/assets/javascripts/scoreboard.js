@@ -141,7 +141,7 @@ var Scoreboard = (function($, _) {
   }
 
   Scoreboard.prototype.setScoreOnPlayerRound = function(playerRound, score) {
-    var scoreElement = $(playerRound.bid).closest("td").nextAll(".score").first();
+    var scoreElement = $(playerRound.bid).closest("td").nextAll(".score").first().find("span");
 
     scoreElement.text(score);
   }
