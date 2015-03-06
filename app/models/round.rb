@@ -3,6 +3,8 @@ class Round < ActiveRecord::Base
 
   belongs_to :game
   belongs_to :trump_picker, class_name: Player
+  belongs_to :dealer, class_name: Player
+
   has_many :players, through: :game
   has_many :player_rounds
 

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post :builder, on: :collection, action: :build_games
 
     get :select_players, on: :member
+    get :start, on: :member
 
     resources :players, controller: :game_players
   end

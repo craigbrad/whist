@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   http_basic_authenticate_with name: "whist", password: "thisisasecret"
 
-  before_action :set_game, only: [:show, :edit, :update, :select_players]
+  before_action :set_game, only: [:show, :edit, :update, :select_players, :start]
 
   def index
     @games = Game.order("created_at ASC").all
@@ -28,12 +28,13 @@ class GamesController < ApplicationController
     @available_players = Player.not_in_game(@game)
   end
 
-  def edit
-    # todo: add finalise game instead
+  def start
+    @game.start_game
 
-    if params[:generate_rounds].present?
-      @game.fill_rounds!
-    end
+    redirect_to action: :edit, id: @game.id
+  end
+
+  def edit
   end
 
   def update
