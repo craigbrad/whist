@@ -38,10 +38,11 @@
 
           td = rounds_form.association :trump_picker, collection: @game.players, label: false
 
-          td = rounds_form.object.dealer.initials
+          td
+            span.btn.btn-default = rounds_form.object.dealer.initials
 
           td
-            span.btn.btn-success.col-sm-12 = round_num -= 1
+            span.btn.btn-primary.col-sm-12 = round_num -= 1
 
           = rounds_form.simple_fields_for :player_rounds do |player_rounds_form|
             td = player_rounds_form.input :bid, label: false
@@ -49,6 +50,7 @@
             td = player_rounds_form.input :contracts, label: false,
               input_html: { data: { player_id: player_rounds_form.object.player_id } }
 
-            td.score *
+            td.score
+              span.btn.btn-success *
 
   = f.button :submit

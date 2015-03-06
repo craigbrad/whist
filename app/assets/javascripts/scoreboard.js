@@ -132,7 +132,7 @@ var Scoreboard = (function($, _) {
     if(previousRound != undefined) {
       var roundInputs = $(previousRound).find("input.integer");
       var previousRoundElement = roundInputs[playerRound.num * 2];
-      var scoreElement = $(previousRoundElement).closest("td").nextAll(".score").first();
+      var scoreElement = $(previousRoundElement).closest("td").nextAll(".score").first().find("span");
 
       return parseInt(scoreElement.text());
     } else {
