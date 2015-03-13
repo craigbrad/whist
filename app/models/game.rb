@@ -33,7 +33,7 @@ class Game < ActiveRecord::Base
     fill_rounds!
   end
 
-  # private
+  private
 
   def fill_rounds!
     return if rounds_filled?
