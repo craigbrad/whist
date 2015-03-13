@@ -6,8 +6,7 @@ class PlayerRound < ActiveRecord::Base
 
   # HOOKS
 
-  before_save :calculate_scores,
-    if: Proc.new { |round| round.bid? && round.contracts? }
+  before_save :calculate_scores
 
   # SCOPES
 
