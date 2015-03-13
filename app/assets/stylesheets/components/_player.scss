@@ -2,3 +2,15 @@
   @extend .btn;
   @extend .btn-default;
 }
+
+.player-overview {
+  table {
+    td {
+      padding: 4px;
+    }
+
+    .glyphicon {
+      margin-right: 4px;
+    }
+  }
+}

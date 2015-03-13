@@ -56,6 +56,7 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(
       :number_of_rounds,
+      :date,
       :rounds_attributes => [
         :id, :trump,
         :trump_picker_id,

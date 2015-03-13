@@ -1,9 +1,9 @@
 class Game < ActiveRecord::Base
   # RELATIONSHIPS
 
-  has_many :game_players
+  has_many :game_players, dependent: :destroy
   has_many :players, through: :game_players
-  has_many :rounds
+  has_many :rounds, dependent: :destroy
   has_many :player_rounds, through: :rounds
 
   # VALIDATIONS

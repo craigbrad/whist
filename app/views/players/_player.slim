@@ -1,0 +1,27 @@
+.col-sm-2.player-overview
+  .panel.panel-default
+    .panel-heading = player.full_name
+    .panel-body
+      table
+        tbody
+          tr
+            td
+              span.glyphicon.glyphicon-screenshot
+              | Accuracy
+            td = number_to_percentage(player.accuracy, precision: 0)
+
+          tr
+            td
+              span.glyphicon.glyphicon-signal
+              | Average Score
+            td = player.average_score
+
+          tr
+            td
+              span.glyphicon.glyphicon-bullhorn
+              | Average Trumps
+
+          tr
+            td
+              span.glyphicon.glyphicon-leaf
+              | Luck

@@ -6,7 +6,7 @@ class Round < ActiveRecord::Base
   belongs_to :dealer, class_name: Player
 
   has_many :players, through: :game
-  has_many :player_rounds
+  has_many :player_rounds, dependent: :destroy
 
   # VALIDATIONS
 
@@ -20,13 +20,17 @@ class Round < ActiveRecord::Base
 
   # SCOPES
 
-  default_scope { order("number asc") }
+  default_scope { order("rounds.number asc") }
 
   # ATTRIBUTES
 
   accepts_nested_attributes_for :player_rounds
 
   TRUMPS = %w(hearts diamonds clubs spades)
+
+  def previous
+    game.rounds.where(number: number - 1).first
+  end
 
   private
 
