@@ -39,7 +39,7 @@ class PlayerRound < ActiveRecord::Base
     round.previous
   end
 
-  private
+  # private
 
   def calculate_score
     self.score = contracts
