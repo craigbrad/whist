@@ -56,6 +56,8 @@ class GamesController < ApplicationController
       player_round.calculate_scores
       player_round.save
     end
+
+    render inline: 'recalculated'
   end
 
   private
