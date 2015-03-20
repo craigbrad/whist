@@ -20,8 +20,22 @@
             td
               span.glyphicon.glyphicon-bullhorn
               | Average Trumps
+            td = player.average_trumps
+
+          tr
+            td
+              span.glyphicon.glyphicon-thumbs-up
+              | First Deal Chance
+            td = number_to_percentage(player.first_deal_percentage, precision: 0)
+
+          tr
+            td
+              span.glyphicon.glyphicon-thumbs-down
+              | Last Deal Chance
+            td = number_to_percentage(player.last_deal_percentage, precision: 0)
 
           tr
             td
               span.glyphicon.glyphicon-leaf
-              | Luck
+              | Split Win %
+            td = player.split_win_percentage
