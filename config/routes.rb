@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get :start, on: :member
 
     resources :players, controller: :game_players
+
+    get :calculate_scores, on: :member
   end
 
   resources :players, only: [:new, :create]

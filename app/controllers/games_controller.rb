@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   http_basic_authenticate_with name: "whist", password: "thisisasecret"
 
-  before_action :set_game, only: [:show, :edit, :update, :select_players, :start]
+  before_action :set_game, only: [:show, :edit, :update, :select_players, :start, :calculate_scores]
 
   def index
     @games = Game.order("created_at ASC").all
@@ -49,6 +49,13 @@ class GamesController < ApplicationController
   def build_games
     @players = Player.all.sample(builder_params[:number_of_players].to_i)
     render :builder
+  end
+
+  def calculate_scores
+    @game.player_rounds.each do |player_round|
+      player_round.calculate_scores
+      player_round.save
+    end
   end
 
   private
