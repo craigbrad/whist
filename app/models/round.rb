@@ -22,6 +22,10 @@ class Round < ActiveRecord::Base
 
   default_scope { order("rounds.number asc") }
 
+  scope :count_by_trump, -> {
+    select('trump').group('trump').reorder('').count
+  }
+
   # ATTRIBUTES
 
   accepts_nested_attributes_for :player_rounds

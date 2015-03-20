@@ -4,6 +4,13 @@ h1 suggest widgets!
   = render @players
 
 .row
+  h4 rounds with trumps
+
+  ul
+   - Round.count_by_trump.sort_by{ |k,v| v }.each do |trump, count|
+     li #{trump}: #{count}
+
+.row
   h4 ideas
 
   ul

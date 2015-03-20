@@ -29,6 +29,8 @@ Here's the basic process:
 * keep players/rounds (trump/picker/num) fixed so you can scroll on smaller devices
 * add dependent callbacks to models (then clean up db)
 
+* auto-update player stats (accuracy etc) when game updated
+
 game 2nd march -
 
 order: craig, joe, mark, paul, me, phil

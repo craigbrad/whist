@@ -18,6 +18,8 @@ class Game < ActiveRecord::Base
 
   # before_create :fill_rounds
 
+  # todo: add default scope to only include games which are finished
+
   # ATTRIBUTES
 
   accepts_nested_attributes_for :rounds
