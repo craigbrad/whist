@@ -6,6 +6,12 @@
         tbody
           tr
             td
+              span.glyphicon.glyphicon-play
+              | Games Played
+            td = player.games.count
+
+          tr
+            td
               span.glyphicon.glyphicon-screenshot
               | Accuracy
             td = number_to_percentage(player.accuracy, precision: 0)
@@ -20,7 +26,7 @@
             td
               span.glyphicon.glyphicon-bullhorn
               | Average Trumps
-            td = player.average_trumps
+            td = number_with_precision(player.average_trumps, precision: 2)
 
           tr
             td

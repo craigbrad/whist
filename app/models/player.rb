@@ -37,7 +37,7 @@ class Player < ActiveRecord::Base
   end
 
   def average_trumps
-    (trump_rounds_by_game.sum.to_f / trump_rounds_by_game.size).ceil
+    (trump_rounds_by_game.sum.to_f / trump_rounds_by_game.size)
   end
 
   def split_win_percentage
