@@ -30,6 +30,12 @@
 
           tr
             td
+              span.glyphicon.glyphicon-check
+              | Highest Contract Hit
+            td = player.highest_contract_hit
+
+          tr
+            td
               span.glyphicon.glyphicon-thumbs-up
               | First Deal Chance
             td = number_to_percentage(player.first_deal_percentage, precision: 0)

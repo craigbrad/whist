@@ -29,7 +29,7 @@ class Player < ActiveRecord::Base
   end
 
   def accuracy
-     (contract_hits.to_f / finished_player_rounds) * 100
+     (contract_hits.count.to_f / finished_player_rounds) * 100
   end
 
   def average_score
@@ -61,12 +61,16 @@ class Player < ActiveRecord::Base
     (last_rounds_as_dealer.count.to_f / last_rounds.count) * 100
   end
 
-  # private
+  def highest_contract_hit
+    contract_hits.reorder('contracts DESC').limit(1).pluck(:contracts).first
+  end
+
+  private
 
   # todo: convert to sql
 
   def contract_hits
-    player_rounds.with_contract_hit.count
+    player_rounds.with_contract_hit
   end
 
   # todo: rename to _count?
