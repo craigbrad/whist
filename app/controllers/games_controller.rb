@@ -35,6 +35,8 @@ class GamesController < ApplicationController
   end
 
   def edit
+    # todo: order game elements here instead of using
+    # default scope on models!
   end
 
   def update
