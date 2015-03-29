@@ -80,4 +80,8 @@ class PlayerRound < ActiveRecord::Base
 
     self.total_score = total_score + calculate_score
   end
+
+  def self.num_of_splits
+    number_of_splits.to_a.first.count
+  end
 end
