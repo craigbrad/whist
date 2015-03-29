@@ -17,8 +17,8 @@ class GamePlayersController < ApplicationController
   private
 
   def render_game_player
-    render partial: 'game_player', 
-      locals: { game_player: @game_player }, 
+    render partial: 'game_player',
+      locals: { game_player: @game_player },
       layout: false
   end
 end

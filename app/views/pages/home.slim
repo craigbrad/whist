@@ -4,14 +4,17 @@ h1 suggest widgets!
   = render @players
 
 .row
-  h4 rounds with trumps
+  h4 Rounds with trumps
 
   ul
    - Round.count_by_trump.sort_by{ |k,v| v }.each do |trump, count|
      li #{trump}: #{count}
 
+  h4 Total number of splits:
+    #{PlayerRound.number_of_splits.to_a.first.count}
+
 .row
-  h4 ideas
+  h4 Ideas
 
   ul
    li most contracts

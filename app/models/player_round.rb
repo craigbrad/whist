@@ -25,6 +25,26 @@ class PlayerRound < ActiveRecord::Base
     joins(:round => :game).where("rounds.number = games.number_of_rounds")
   }
 
+  scope :max_contracts, -> {
+    unscoped.select('Max(id) AS id', :round_id, 'Max(contracts) AS contracts').group(:round_id)
+  }
+
+  scope :rounds_with_split_and_contracts, -> {
+    unscoped.select(:round_id, 'Count(1)').
+    joins("INNER JOIN (#{max_contracts.to_sql})
+           AS max_contracts ON player_rounds.round_id=max_contracts.round_id
+           AND player_rounds.contracts=max_contracts.contracts").
+    group('player_rounds.round_id').having('Count(1) > 1')
+  }
+
+  scope :rounds_with_split, -> {
+    unscoped.select('round_id ').distinct.from("(#{rounds_with_split_and_contracts.to_sql}) AS rounds")
+  }
+
+  scope :number_of_splits, -> {
+    unscoped.select('Count(1) AS count').from("(#{rounds_with_split.to_sql}) AS splits")
+  }
+
   def previous?
     previous.present?
   end
